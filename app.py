@@ -1321,7 +1321,7 @@ def reset_password():
         print(f"Reset password error: {e}")
         return jsonify({"status": "error", "message": "Error al restablecer la contraseña."})
     
-# 📌 RUTA PARA ACTUALIZAR PERFIL DE USUARIO (POST)
+# 📌 RUTA PARA ACTUALIZAR PERFIL DE USUARIO (POST) - ACTUALIZADA CON SINCRONIZACIÓN
 @app.route("/update-profile", methods=["POST"])
 def update_profile():
     # Verificar si el usuario está logueado
@@ -1341,6 +1341,7 @@ def update_profile():
         cur = conn.cursor()
         
         user_id = session['user_id']
+        old_email = session.get('user_email')  # Guardar email antiguo para comparación
         
         # Verificar si el nuevo email ya existe para otro usuario
         check_email_query = """
@@ -1351,7 +1352,13 @@ def update_profile():
         if cur.fetchone():
             return jsonify({"status": "error", "message": "Este correo electrónico ya está registrado por otro usuario."})
         
-        # Actualizar perfil del usuario
+        # Guardar datos antiguos para usar en las actualizaciones
+        cur.execute("SELECT nombre_completo, correo_electronico FROM administradores WHERE id_admin = %s", (user_id,))
+        old_data = cur.fetchone()
+        old_name = old_data[0] if old_data else None
+        old_email_db = old_data[1] if old_data else None
+        
+        # Actualizar perfil del administrador
         update_query = """
             UPDATE administradores 
             SET nombre_completo = %s,
@@ -1361,6 +1368,44 @@ def update_profile():
         """
         cur.execute(update_query, (nombre_completo, correo_electronico, user_id))
         updated_user = cur.fetchone()
+        
+        # 🔄 ACTUALIZAR DATOS EN TABLAS RELACIONADAS
+        if updated_user:
+            # Actualizar en tabla estudiantes donde el administrador registró
+            update_estudiantes_query = """
+                UPDATE estudiantes 
+                SET nombre_completo_admin = %s,
+                    correo_electronico_admin = %s
+                WHERE id_admin = %s
+            """
+            cur.execute(update_estudiantes_query, (nombre_completo, correo_electronico, user_id))
+            
+            # Actualizar en tabla profesores donde el administrador registró
+            update_profesores_query = """
+                UPDATE profesores 
+                SET nombre_completo_admin = %s,
+                    correo_electronico_admin = %s
+                WHERE id_admin = %s
+            """
+            cur.execute(update_profesores_query, (nombre_completo, correo_electronico, user_id))
+            
+            # Actualizar en tabla solicitudes_cambio_contrasena
+            update_solicitudes_query = """
+                UPDATE solicitudes_cambio_contrasena 
+                SET id_admin = %s  -- Aunque el ID es el mismo, esto asegura consistencia
+                WHERE id_admin = %s
+            """
+            cur.execute(update_solicitudes_query, (user_id, user_id))
+            
+            # Contar cuántos registros se actualizaron (para logging)
+            cur.execute("SELECT COUNT(*) FROM estudiantes WHERE id_admin = %s", (user_id,))
+            estudiantes_actualizados = cur.fetchone()[0]
+            
+            cur.execute("SELECT COUNT(*) FROM profesores WHERE id_admin = %s", (user_id,))
+            profesores_actualizados = cur.fetchone()[0]
+            
+            print(f"✅ Perfil actualizado: {old_name} -> {nombre_completo}, {old_email_db} -> {correo_electronico}")
+            print(f"📊 Registros actualizados: {estudiantes_actualizados} estudiantes, {profesores_actualizados} profesores")
         
         conn.commit()
         
@@ -1374,16 +1419,25 @@ def update_profile():
         
         return jsonify({
             "status": "success", 
-            "message": "Perfil actualizado exitosamente!",
+            "message": "Perfil actualizado exitosamente! Los datos también se han actualizado en todos los registros relacionados.",
             "user": {
                 "name": session['user_name'],
                 "email": session['user_email']
+            },
+            "stats": {
+                "estudiantes_actualizados": estudiantes_actualizados,
+                "profesores_actualizados": profesores_actualizados
             }
         })
         
     except Exception as e:
         print(f"Update profile error: {e}")
-        return jsonify({"status": "error", "message": "Error al actualizar el perfil."})
+        # Hacer rollback si hay error
+        try:
+            conn.rollback()
+        except:
+            pass
+        return jsonify({"status": "error", "message": f"Error al actualizar el perfil: {str(e)}"})
 
 # 📌 RUTA PARA CAMBIAR CONTRASEÑA (POST)
 @app.route("/change-password", methods=["POST"])
