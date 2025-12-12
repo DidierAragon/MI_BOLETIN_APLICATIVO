@@ -1449,7 +1449,7 @@ def change_password():
         print(f"Change password error: {e}")
         return jsonify({"status": "error", "message": "Error al cambiar la contraseña."})
 
-# 📌 RUTA PARA REGISTRAR ESTUDIANTE (POST) - ACTUALIZADA
+# 📌 RUTA PARA REGISTRAR ESTUDIANTE (POST) - ACTUALIZADA CON TRACKING
 @app.route("/registrar-estudiante", methods=["POST"])
 def registrar_estudiante():
     # Verificar si el usuario está logueado
@@ -1476,6 +1476,11 @@ def registrar_estudiante():
     
     # Hash de la contraseña
     hashed_password = bcrypt.hashpw(contrasena.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+    
+    # Obtener datos del administrador logueado para tracking
+    admin_id = session.get('user_id')
+    admin_nombre = session.get('user_name')
+    admin_email = session.get('user_email')
     
     try:
         conn = get_db_connection()
@@ -1506,15 +1511,18 @@ def registrar_estudiante():
         # Generar nuevo código secuencial con ceros a la izquierda
         codigo_estudiante = f"EST{new_number:03d}"
         
+        # MODIFICACIÓN: Incluir campos de tracking
         insert_query = """
             INSERT INTO estudiantes 
             (codigo_estudiante, nombre_completo, tipo_documento, numero_documento, 
-             correo_electronico, grado, grupo, contrasena)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+             correo_electronico, grado, grupo, contrasena, 
+             id_admin, nombre_completo_admin, correo_electronico_admin)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             RETURNING id_estudiante, codigo_estudiante;
         """
         cur.execute(insert_query, (codigo_estudiante, nombre_completo, tipo_documento, numero_documento,
-                                   correo_electronico, grado, grupo, hashed_password))
+                                   correo_electronico, grado, grupo, hashed_password,
+                                   admin_id, admin_nombre, admin_email))
         
         new_student = cur.fetchone()
         conn.commit()
@@ -1544,7 +1552,7 @@ def registrar_estudiante():
         print(f"Unexpected error: {e}")
         return jsonify({"status": "error", "message": "Error inesperado. Por favor, intenta nuevamente."})
 
-# 📌 RUTA PARA REGISTRAR PROFESOR (POST) - ACTUALIZADA
+# 📌 RUTA PARA REGISTRAR PROFESOR (POST) - ACTUALIZADA CON TRACKING
 @app.route("/registrar-profesor", methods=["POST"])
 def registrar_profesor():
     # Verificar si el usuario está logueado
@@ -1578,6 +1586,11 @@ def registrar_profesor():
     # Hash de la contraseña
     hashed_password = bcrypt.hashpw(contrasena.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
     
+    # Obtener datos del administrador logueado para tracking
+    admin_id = session.get('user_id')
+    admin_nombre = session.get('user_name')
+    admin_email = session.get('user_email')
+    
     try:
         conn = get_db_connection()
         cur = conn.cursor()
@@ -1607,15 +1620,18 @@ def registrar_profesor():
         # Generar nuevo código secuencial con ceros a la izquierda
         codigo_profesor = f"PROF{new_number:03d}"
         
+        # MODIFICACIÓN: Incluir campos de tracking
         insert_query = """
             INSERT INTO profesores 
             (codigo_profesor, nombre_completo, tipo_documento, numero_documento, 
-             correo_electronico, telefono, asignaturas, contrasena)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+             correo_electronico, telefono, asignaturas, contrasena,
+             id_admin, nombre_completo_admin, correo_electronico_admin)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             RETURNING id_profesor, codigo_profesor;
         """
         cur.execute(insert_query, (codigo_profesor, nombre_completo, tipo_documento, numero_documento,
-                                   correo_electronico, telefono, asignaturas_str, hashed_password))
+                                   correo_electronico, telefono, asignaturas_str, hashed_password,
+                                   admin_id, admin_nombre, admin_email))
         
         new_professor = cur.fetchone()
         conn.commit()
