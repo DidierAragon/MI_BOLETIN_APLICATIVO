@@ -12,10 +12,10 @@ def index():
 def loginuser():
     return render_template('loginuser.html')
 
-# Ruta para forgot_password (simplemente para evitar error 404)
-@app.route('/forgot_password')
-def forgot_password():
-    return render_template('f-password.html')
+# Ruta para solicitud_user
+@app.route('/solicitud_user')
+def solicitud_user():
+    return render_template('solicitud.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
