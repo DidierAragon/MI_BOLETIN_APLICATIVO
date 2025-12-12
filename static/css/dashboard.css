@@ -77,10 +77,8 @@ body {
 }
 
 /* ============================================
-   SIDEBAR FIJADO Y SCROLL SOLO EN CONTENIDO
+   LAYOUT PRINCIPAL
    ============================================ */
-
-/* Contenedor principal con sidebar fijo */
 .app-container {
     display: flex;
     min-height: 100vh;
@@ -88,7 +86,9 @@ body {
     position: relative;
 }
 
-/* Sidebar fijo en la izquierda */
+/* ============================================
+   SIDEBAR
+   ============================================ */
 .sidebar {
     width: 280px;
     background-color: white;
@@ -106,11 +106,10 @@ body {
     overflow-y: auto;
 }
 
-/* Encabezado del sidebar con el logo */
+/* Encabezado del sidebar */
 .sidebar-header {
     padding: var(--space-lg) var(--space-md);
     border-bottom: 1px solid var(--gray-200);
-    /* Ajuste para sidebar fijo: mantener el header visible al hacer scroll */
     background-color: white;
     position: sticky;
     top: 0;
@@ -223,7 +222,6 @@ body {
     padding: var(--space-md);
     border-top: 1px solid var(--gray-200);
     background-color: var(--gray-50);
-    /* Ajuste para sidebar fijo: mantener el footer visible al hacer scroll */
     position: sticky;
     bottom: 0;
     background-color: white;
@@ -305,10 +303,12 @@ body {
     border-color: var(--gray-400);
 }
 
-/* Contenido principal */
+/* ============================================
+   CONTENIDO PRINCIPAL
+   ============================================ */
 .main-content {
     flex: 1;
-    margin-left: 280px; /* Igual al ancho del sidebar */
+    margin-left: 280px;
     padding: var(--space-xl);
     background-color: var(--gray-50);
     overflow-y: auto;
@@ -316,11 +316,9 @@ body {
     min-height: 100vh;
 }
 
-/* Estilos para las secciones del contenido principal */
 .content-section {
     display: none;
     width: 100%;
-    /* Ajuste para que ocupe el alto disponible */
     animation: fadeIn var(--transition-slow) ease;
     min-height: 100%;
 }
@@ -330,15 +328,14 @@ body {
 }
 
 .content-wrapper {
-    max-width: 100%; /* Modificado */
+    max-width: 100%;
     margin: 0 auto;
     padding: var(--space-xl);
     background-color: white;
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-md);
     border: 1px solid var(--gray-200);
-    /* Asegurar un alto mínimo que llene la ventana - padding */
-    min-height: calc(100vh - var(--space-xl) * 2); 
+    min-height: calc(100vh - var(--space-xl) * 2);
 }
 
 .content-wrapper h1 {
@@ -388,7 +385,9 @@ body {
     font-size: var(--font-size-sm);
 }
 
-/* Sistema de Botones Unificado */
+/* ============================================
+   COMPONENTES: BOTONES
+   ============================================ */
 .btn {
     padding: var(--space-md) var(--space-lg);
     border-radius: var(--border-radius-md);
@@ -484,7 +483,9 @@ body {
     box-shadow: none !important;
 }
 
-/* Sistema de Inputs Unificado */
+/* ============================================
+   COMPONENTES: INPUTS
+   ============================================ */
 .input {
     width: 100%;
     padding: var(--space-md);
@@ -519,7 +520,6 @@ body {
     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 
-/* Inputs con icono */
 .input-with-icon {
     position: relative;
     width: 100%;
@@ -539,7 +539,9 @@ body {
     z-index: 1;
 }
 
-/* Tarjetas/contenedores unificados */
+/* ============================================
+   COMPONENTES: CARTAS
+   ============================================ */
 .card {
     background-color: white;
     border-radius: var(--border-radius-lg);
@@ -563,7 +565,9 @@ body {
     line-height: 1.3;
 }
 
-/* Estilos para el modal de perfil */
+/* ============================================
+   COMPONENTES: MODALES
+   ============================================ */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -801,7 +805,8 @@ body {
 }
 
 /* Efectos de hover para los botones de acción */
-.edit-btn:active, .password-btn:active {
+.edit-btn:active,
+.password-btn:active {
     transform: translateY(0);
 }
 
@@ -810,9 +815,9 @@ body {
     box-shadow: var(--shadow-inner);
 }
 
-/* Estilos específicos para el modal de editar perfil */
-
-/* Sección de avatar en el modal de editar */
+/* ============================================
+   MODAL EDITAR PERFIL
+   ============================================ */
 .edit-profile-avatar-section {
     display: flex;
     flex-direction: column;
@@ -990,9 +995,9 @@ body {
     transform: translateY(0);
 }
 
-/* Estilos específicos para el modal de cambiar contraseña */
-
-/* Contenedor de contraseña con botón de toggle */
+/* ============================================
+   MODAL CAMBIAR CONTRASEÑA
+   ============================================ */
 .password-container {
     position: relative;
     width: 100%;
@@ -1120,7 +1125,9 @@ body {
     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 
-/* Sistema de espaciado consistente */
+/* ============================================
+   UTILIDADES: ESPACIADO
+   ============================================ */
 .mb-xs { margin-bottom: var(--space-xs) !important; }
 .mb-sm { margin-bottom: var(--space-sm) !important; }
 .mb-md { margin-bottom: var(--space-md) !important; }
@@ -1139,7 +1146,9 @@ body {
 .p-lg { padding: var(--space-lg) !important; }
 .p-xl { padding: var(--space-xl) !important; }
 
-/* Grid y layout consistente */
+/* ============================================
+   UTILIDADES: GRID Y LAYOUT
+   ============================================ */
 .grid {
     display: grid;
     gap: var(--space-md);
@@ -1181,7 +1190,9 @@ body {
     gap: var(--space-lg) !important;
 }
 
-/* Tipografía unificada */
+/* ============================================
+   UTILIDADES: TIPOGRAFÍA
+   ============================================ */
 .text-xs {
     font-size: var(--font-size-xs);
     line-height: 1.4;
@@ -1235,7 +1246,9 @@ body {
 .bg-gray-800 { background-color: var(--gray-800); }
 .bg-gray-900 { background-color: var(--gray-900); }
 
-/* Badges consistentes */
+/* ============================================
+   UTILIDADES: BADGES
+   ============================================ */
 .badge {
     display: inline-block;
     padding: var(--space-xs) var(--space-md);
@@ -1257,348 +1270,9 @@ body {
     color: var(--gray-700);
 }
 
-/* Responsive - para pantallas pequeñas */
-@media (max-width: 768px) {
-    .app-container {
-        flex-direction: column;
-    }
-    
-    .sidebar {
-        width: 100%;
-        height: auto;
-        /* Reemplazo de position: fixed a relative en móviles */
-        position: relative; 
-        border-right: none;
-        border-bottom: 1px solid var(--gray-300);
-        /* Limitar altura en móvil para ver el contenido */
-        max-height: 80vh; 
-    }
-    
-    .sidebar-nav {
-        display: flex;
-        overflow-x: auto;
-        padding: var(--space-md) 0;
-    }
-    
-    .nav-list {
-        display: flex;
-        padding: 0 var(--space-md);
-    }
-    
-    .nav-item {
-        margin-bottom: 0;
-        margin-right: var(--space-sm);
-        padding: 0;
-    }
-    
-    .nav-link {
-        padding: var(--space-sm) var(--space-md);
-        white-space: nowrap;
-    }
-    
-    .nav-text {
-        font-size: var(--font-size-sm);
-    }
-    
-    .main-content {
-        margin-left: 0; /* Eliminar el margen izquierdo */
-        padding: var(--space-md);
-        overflow-y: visible; /* Dejar que el scroll lo maneje la página o las secciones internas */
-        min-height: auto;
-    }
-    
-    .sidebar-footer {
-        /* Footer fijo al final del sidebar en móvil */
-        position: sticky;
-        bottom: 0;
-        background-color: white;
-        border-top: 1px solid var(--gray-200);
-    }
-    
-    .content-wrapper {
-        padding: var(--space-md);
-        min-height: auto; /* Ajuste para el nuevo main-content */
-    }
-    
-    .modal-container {
-        max-width: 100%;
-        max-height: 90vh;
-        margin: 0;
-    }
-    
-    .btn, .btn-primary, .btn-secondary {
-        min-height: 40px;
-    }
-}
-
-/* Responsive para el modal */
-@media (max-width: 600px) {
-    .modal-overlay {
-        padding: var(--space-sm);
-    }
-    
-    .modal-container {
-        max-width: 100%;
-        max-height: 90vh;
-        margin: 0;
-    }
-    
-    .modal-header {
-        padding: var(--space-md);
-    }
-    
-    .modal-title {
-        font-size: var(--font-size-xl);
-    }
-    
-    .modal-content {
-        padding: var(--space-md);
-    }
-    
-    .profile-avatar img {
-        width: 90px;
-        height: 90px;
-    }
-    
-    .profile-name {
-        font-size: var(--font-size-xl);
-    }
-    
-    .profile-email {
-        font-size: var(--font-size-sm);
-    }
-    
-    .profile-actions {
-        gap: var(--space-xs);
-    }
-    
-    .profile-action-btn {
-        padding: var(--space-sm) var(--space-md);
-        font-size: var(--font-size-sm);
-        min-height: 40px;
-    }
-    
-    .modal-footer {
-        padding: var(--space-sm) var(--space-md);
-    }
-    
-    .last-login {
-        font-size: var(--font-size-xs);
-    }
-    
-    /* Editar perfil responsive */
-    .edit-profile-avatar-section {
-        margin-bottom: var(--space-md);
-    }
-    
-    .current-avatar {
-        width: 90px;
-        height: 90px;
-        margin-bottom: var(--space-sm);
-    }
-    
-    .form-group {
-        margin-bottom: var(--space-md);
-    }
-    
-    .form-input {
-        padding: var(--space-sm) var(--space-sm) var(--space-sm) 44px;
-        font-size: var(--font-size-sm);
-    }
-    
-    .input-icon {
-        font-size: var(--font-size-md);
-        left: 14px;
-    }
-    
-    .form-actions {
-        flex-direction: column;
-        gap: var(--space-xs);
-        margin-top: var(--space-lg);
-    }
-    
-    .btn-primary, .btn-secondary {
-        padding: var(--space-sm) var(--space-md);
-        font-size: var(--font-size-sm);
-        width: 100%;
-        min-height: 40px;
-    }
-    
-    /* Cambiar contraseña responsive */
-    .password-container .form-input {
-        padding-right: 44px;
-    }
-    
-    .toggle-password-btn {
-        right: 10px;
-        width: 30px;
-        height: 30px;
-    }
-    
-    .error-message {
-        font-size: var(--font-size-xs);
-    }
-    
-    .password-hint {
-        font-size: var(--font-size-xs);
-    }
-}
-
-/* Ajustes para pantallas muy pequeñas */
-@media (max-width: 480px) {
-    .modal-overlay {
-        padding: var(--space-xs);
-    }
-    
-    .modal-header {
-        flex-direction: row;
-        gap: 0;
-        align-items: center;
-    }
-    
-    .modal-title {
-        font-size: var(--font-size-lg);
-    }
-    
-    .profile-avatar img {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .profile-name {
-        font-size: var(--font-size-lg);
-    }
-    
-    .profile-email {
-        font-size: var(--font-size-xs);
-    }
-    
-    .role-badge {
-        font-size: var(--font-size-xs);
-        padding: 3px 10px;
-    }
-    
-    .profile-action-btn {
-        padding: var(--space-sm);
-        font-size: var(--font-size-xs);
-    }
-    
-    .current-avatar {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .form-input {
-        padding: var(--space-xs) var(--space-sm) var(--space-xs) 40px;
-        font-size: var(--font-size-sm);
-    }
-    
-    .input-icon {
-        font-size: var(--font-size-sm);
-        left: 12px;
-    }
-    
-    .btn-primary, .btn-secondary {
-        padding: var(--space-sm) var(--space-md);
-        font-size: var(--font-size-xs);
-    }
-    
-    .password-container .form-input {
-        padding-right: 40px;
-    }
-    
-    .toggle-password-btn {
-        right: 8px;
-        width: 28px;
-        height: 28px;
-        font-size: var(--font-size-md);
-    }
-    
-    /* Ajustes específicos para el móvil más pequeño */
-    .sidebar {
-        max-height: 70vh;
-    }
-    
-    .main-content {
-        padding: var(--space-sm);
-    }
-}
-
-/* Scrollbars consistentes */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--gray-100);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--gray-400);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--gray-500);
-}
-
-/* Mejorar la apariencia del scroll en el sidebar (específico) */
-.sidebar::-webkit-scrollbar {
-    width: 6px;
-}
-
-.sidebar::-webkit-scrollbar-track {
-    background: var(--gray-100);
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-    background: var(--gray-400);
-    border-radius: 3px;
-}
-
-.sidebar::-webkit-scrollbar-thumb:hover {
-    background: var(--gray-500);
-}
-
-/* Estados de carga y deshabilitado */
-.loading {
-    opacity: 0.7;
-    pointer-events: none;
-}
-
-.disabled {
-    opacity: 0.5;
-    pointer-events: none;
-    cursor: not-allowed;
-}
-
-/* Animaciones sutiles */
-.fade-in {
-    animation: fadeIn var(--transition-slow) ease;
-}
-
-.slide-up {
-    animation: slideUp var(--transition-slow) ease;
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* ============================================
-   ESTILOS PARA LA SECCIÓN DE INICIO (DASHBOARD)
+   SECCIÓN DE INICIO (DASHBOARD)
    ============================================ */
-
-/* Sección de bienvenida */
 .welcome-section {
     margin-bottom: var(--space-xl);
     padding-bottom: var(--space-lg);
@@ -1801,47 +1475,9 @@ body {
     line-height: 1.3;
 }
 
-/* Responsive para el dashboard */
-@media (max-width: 1024px) {
-    .overview-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .quick-actions-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    /* Mantenido de la sección anterior */
-}
-
-@media (max-width: 480px) {
-    .quick-actions-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--space-sm);
-    }
-    
-    .view-all-btn {
-        align-self: flex-end;
-    }
-    
-    /* Mantenido de la sección anterior */
-    .activity-item {
-        padding: var(--space-sm);
-    }
-}
-
 /* ============================================
-   ESTILOS PARA EL FORMULARIO DE AGREGAR ESTUDIANTE
+   FORMULARIO DE AGREGAR ESTUDIANTE
    ============================================ */
-
-/* Encabezado del formulario */
 .form-header {
     margin-bottom: var(--space-xl);
     padding-bottom: var(--space-lg);
@@ -2167,64 +1803,9 @@ body {
     opacity: 0.9;
 }
 
-/* Responsive para formulario */
-@media (max-width: 768px) {
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: var(--space-md);
-    }
-    
-    .password-generator-container {
-        flex-direction: column;
-        gap: var(--space-sm);
-    }
-    
-    .generate-password-btn {
-        width: 100%;
-    }
-    
-    .form-actions {
-        flex-direction: column;
-    }
-    
-    .form-actions .btn {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .form-section {
-        padding: var(--space-md);
-    }
-    
-    .form-section-title {
-        font-size: var(--font-size-lg);
-    }
-    
-    .form-label {
-        font-size: var(--font-size-sm);
-    }
-    
-    .form-input, .form-select {
-        padding: var(--space-sm) var(--space-sm) var(--space-sm) 40px;
-        font-size: var(--font-size-sm);
-    }
-    
-    .input-icon, .select-icon {
-        left: 12px;
-        font-size: 14px;
-    }
-    
-    .strength-text, .strength-label {
-        font-size: var(--font-size-xs);
-    }
-}
-
 /* ============================================
-   ESTILOS ESPECÍFICOS PARA EL FORMULARIO DE PROFESOR
+   FORMULARIO DE PROFESOR
    ============================================ */
-
-/* Multi-select wrapper */
 .multi-select-wrapper {
     position: relative;
 }
@@ -2273,22 +1854,9 @@ body {
     font-style: italic;
 }
 
-/* Responsive para multi-select */
-@media (max-width: 768px) {
-    .form-select[multiple] {
-        min-height: 100px;
-        padding: var(--space-xs) var(--space-sm) var(--space-xs) 40px;
-    }
-    
-    .multi-select-info {
-        flex-direction: column;
-    }
-}
-
 /* ============================================
-   ESTILOS PARA LA SECCIÓN DE REPORTES CON TABLAS
+   SECCIÓN DE REPORTES CON TABLAS
    ============================================ */
-
 .reports-section {
     background-color: white;
     border-radius: var(--border-radius-lg);
@@ -2555,90 +2123,9 @@ body {
     color: var(--gray-400);
 }
 
-/* Responsive para tablas */
-@media (max-width: 1024px) {
-    .table-controls {
-        width: 100%;
-        justify-content: space-between;
-    }
-    
-    .search-container {
-        flex: 1;
-        min-width: auto;
-    }
-}
-
-@media (max-width: 768px) {
-    .reports-section {
-        padding: var(--space-md);
-    }
-    
-    .reports-section .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--space-md);
-    }
-    
-    .section-title {
-        font-size: var(--font-size-lg) !important;
-    }
-    
-    .table-controls {
-        width: 100%;
-        flex-direction: column;
-        align-items: stretch;
-        gap: var(--space-sm);
-    }
-    
-    .search-container {
-        width: 100%;
-    }
-    
-    .total-counter {
-        align-self: flex-end;
-    }
-    
-    .table-footer {
-        flex-direction: column;
-        gap: var(--space-sm);
-        align-items: flex-start;
-    }
-    
-    .data-table {
-        font-size: var(--font-size-xs);
-    }
-    
-    .data-table th,
-    .data-table td {
-        padding: var(--space-sm) var(--space-xs);
-    }
-    
-    .table-actions {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .reports-section {
-        padding: var(--space-sm);
-    }
-    
-    .section-title {
-        font-size: var(--font-size-md) !important;
-    }
-    
-    .data-table {
-        min-width: 600px;
-    }
-    
-    .action-btn {
-        width: 28px;
-        height: 28px;
-        font-size: var(--font-size-xs);
-    }
-}
-
-/* Agregar estos estilos para los mensajes en los modales */
+/* ============================================
+   ESTILOS ADICIONALES
+   ============================================ */
 .form-message {
     margin: 1rem 0;
     padding: 1rem;
@@ -2691,4 +2178,505 @@ body {
 /* Spinner para carga */
 .fa-spinner {
     margin-right: 8px;
+}
+
+/* Estados de carga y deshabilitado */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* Animaciones sutiles */
+.fade-in {
+    animation: fadeIn var(--transition-slow) ease;
+}
+
+.slide-up {
+    animation: slideUp var(--transition-slow) ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   SCROLLBARS
+   ============================================ */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--gray-100);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gray-400);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-500);
+}
+
+/* Mejorar la apariencia del scroll en el sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: var(--gray-100);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--gray-400);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-500);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Pantallas grandes (tablets en landscape y más pequeñas) */
+@media (max-width: 1024px) {
+    .overview-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .table-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .search-container {
+        flex: 1;
+        min-width: auto;
+    }
+}
+
+/* Tablets y pantallas medianas */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid var(--gray-300);
+        max-height: 80vh;
+    }
+    
+    .sidebar-nav {
+        display: flex;
+        overflow-x: auto;
+        padding: var(--space-md) 0;
+    }
+    
+    .nav-list {
+        display: flex;
+        padding: 0 var(--space-md);
+    }
+    
+    .nav-item {
+        margin-bottom: 0;
+        margin-right: var(--space-sm);
+        padding: 0;
+    }
+    
+    .nav-link {
+        padding: var(--space-sm) var(--space-md);
+        white-space: nowrap;
+    }
+    
+    .nav-text {
+        font-size: var(--font-size-sm);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding: var(--space-md);
+        overflow-y: visible;
+        min-height: auto;
+    }
+    
+    .sidebar-footer {
+        position: sticky;
+        bottom: 0;
+        background-color: white;
+        border-top: 1px solid var(--gray-200);
+    }
+    
+    .content-wrapper {
+        padding: var(--space-md);
+        min-height: auto;
+    }
+    
+    .modal-container {
+        max-width: 100%;
+        max-height: 90vh;
+        margin: 0;
+    }
+    
+    .btn, .btn-primary, .btn-secondary {
+        min-height: 40px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    .password-generator-container {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+    
+    .generate-password-btn {
+        width: 100%;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions .btn {
+        width: 100%;
+    }
+    
+    .reports-section {
+        padding: var(--space-md);
+    }
+    
+    .reports-section .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-md);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-lg) !important;
+    }
+    
+    .table-controls {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-sm);
+    }
+    
+    .search-container {
+        width: 100%;
+    }
+    
+    .total-counter {
+        align-self: flex-end;
+    }
+    
+    .table-footer {
+        flex-direction: column;
+        gap: var(--space-sm);
+        align-items: flex-start;
+    }
+    
+    .data-table {
+        font-size: var(--font-size-xs);
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: var(--space-sm) var(--space-xs);
+    }
+    
+    .table-actions {
+        justify-content: center;
+    }
+    
+    .form-select[multiple] {
+        min-height: 100px;
+        padding: var(--space-xs) var(--space-sm) var(--space-xs) 40px;
+    }
+    
+    .multi-select-info {
+        flex-direction: column;
+    }
+}
+
+/* Pantallas pequeñas (móviles en landscape) */
+@media (max-width: 600px) {
+    .modal-overlay {
+        padding: var(--space-sm);
+    }
+    
+    .modal-container {
+        max-width: 100%;
+        max-height: 90vh;
+        margin: 0;
+    }
+    
+    .modal-header {
+        padding: var(--space-md);
+    }
+    
+    .modal-title {
+        font-size: var(--font-size-xl);
+    }
+    
+    .modal-content {
+        padding: var(--space-md);
+    }
+    
+    .profile-avatar img {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .profile-name {
+        font-size: var(--font-size-xl);
+    }
+    
+    .profile-email {
+        font-size: var(--font-size-sm);
+    }
+    
+    .profile-actions {
+        gap: var(--space-xs);
+    }
+    
+    .profile-action-btn {
+        padding: var(--space-sm) var(--space-md);
+        font-size: var(--font-size-sm);
+        min-height: 40px;
+    }
+    
+    .modal-footer {
+        padding: var(--space-sm) var(--space-md);
+    }
+    
+    .last-login {
+        font-size: var(--font-size-xs);
+    }
+    
+    /* Editar perfil responsive */
+    .edit-profile-avatar-section {
+        margin-bottom: var(--space-md);
+    }
+    
+    .current-avatar {
+        width: 90px;
+        height: 90px;
+        margin-bottom: var(--space-sm);
+    }
+    
+    .form-group {
+        margin-bottom: var(--space-md);
+    }
+    
+    .form-input {
+        padding: var(--space-sm) var(--space-sm) var(--space-sm) 44px;
+        font-size: var(--font-size-sm);
+    }
+    
+    .input-icon {
+        font-size: var(--font-size-md);
+        left: 14px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: var(--space-xs);
+        margin-top: var(--space-lg);
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: var(--space-sm) var(--space-md);
+        font-size: var(--font-size-sm);
+        width: 100%;
+        min-height: 40px;
+    }
+    
+    /* Cambiar contraseña responsive */
+    .password-container .form-input {
+        padding-right: 44px;
+    }
+    
+    .toggle-password-btn {
+        right: 10px;
+        width: 30px;
+        height: 30px;
+    }
+    
+    .error-message {
+        font-size: var(--font-size-xs);
+    }
+    
+    .password-hint {
+        font-size: var(--font-size-xs);
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .modal-overlay {
+        padding: var(--space-xs);
+    }
+    
+    .modal-header {
+        flex-direction: row;
+        gap: 0;
+        align-items: center;
+    }
+    
+    .modal-title {
+        font-size: var(--font-size-lg);
+    }
+    
+    .profile-avatar img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .profile-name {
+        font-size: var(--font-size-lg);
+    }
+    
+    .profile-email {
+        font-size: var(--font-size-xs);
+    }
+    
+    .role-badge {
+        font-size: var(--font-size-xs);
+        padding: 3px 10px;
+    }
+    
+    .profile-action-btn {
+        padding: var(--space-sm);
+        font-size: var(--font-size-xs);
+    }
+    
+    .current-avatar {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .form-input {
+        padding: var(--space-xs) var(--space-sm) var(--space-xs) 40px;
+        font-size: var(--font-size-sm);
+    }
+    
+    .input-icon {
+        font-size: var(--font-size-sm);
+        left: 12px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: var(--space-sm) var(--space-md);
+        font-size: var(--font-size-xs);
+    }
+    
+    .password-container .form-input {
+        padding-right: 40px;
+    }
+    
+    .toggle-password-btn {
+        right: 8px;
+        width: 28px;
+        height: 28px;
+        font-size: var(--font-size-md);
+    }
+    
+    .sidebar {
+        max-height: 70vh;
+    }
+    
+    .main-content {
+        padding: var(--space-sm);
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+    
+    .view-all-btn {
+        align-self: flex-end;
+    }
+    
+    .activity-item {
+        padding: var(--space-sm);
+    }
+    
+    .reports-section {
+        padding: var(--space-sm);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-md) !important;
+    }
+    
+    .data-table {
+        min-width: 600px;
+    }
+    
+    .action-btn {
+        width: 28px;
+        height: 28px;
+        font-size: var(--font-size-xs);
+    }
+    
+    .form-section {
+        padding: var(--space-md);
+    }
+    
+    .form-section-title {
+        font-size: var(--font-size-lg);
+    }
+    
+    .form-label {
+        font-size: var(--font-size-sm);
+    }
+    
+    .form-input, .form-select {
+        padding: var(--space-sm) var(--space-sm) var(--space-sm) 40px;
+        font-size: var(--font-size-sm);
+    }
+    
+    .input-icon, .select-icon {
+        left: 12px;
+        font-size: 14px;
+    }
+    
+    .strength-text, .strength-label {
+        font-size: var(--font-size-xs);
+    }
 }
