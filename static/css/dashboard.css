@@ -12,8 +12,9 @@
     --gray-800: #424242;
     --gray-900: #212121;
     
-    /* Colores funcionales */
-    --primary: #6366f1;
+    /* Colores funcionales - Paleta de login.css */
+    --primary: #003366;        /* Azul oscuro principal */
+    --primary-light: #4A90E2;  /* Azul claro para hover/accent */
     --error: #ef4444;
     --error-dark: #dc2626;
     --success: #10b981;
@@ -139,19 +140,19 @@ body {
 
 .logo-icon {
     font-size: var(--font-size-4xl);
-    color: var(--gray-800);
+    color: var(--primary);
     margin-right: var(--space-sm);
     transition: color var(--transition-normal);
 }
 
 .logo-btn:hover .logo-icon {
-    color: var(--primary);
+    color: var(--primary-light);
 }
 
 .logo-text {
     font-size: var(--font-size-3xl);
     font-weight: 700;
-    color: var(--gray-900);
+    color: var(--primary);
     letter-spacing: -0.5px;
 }
 
@@ -187,15 +188,15 @@ body {
 
 .nav-link:hover {
     background-color: var(--gray-100);
-    color: var(--gray-900);
+    color: var(--primary);
     border-color: var(--gray-200);
 }
 
 .nav-link.active {
-    background-color: var(--gray-200);
-    color: var(--gray-900);
+    background-color: rgba(0, 51, 102, 0.1);
+    color: var(--primary);
     font-weight: 600;
-    border-color: var(--gray-300);
+    border-color: rgba(0, 51, 102, 0.2);
 }
 
 .nav-icon {
@@ -208,7 +209,7 @@ body {
 
 .nav-link:hover .nav-icon,
 .nav-link.active .nav-icon {
-    color: var(--gray-900);
+    color: var(--primary);
 }
 
 .nav-text {
@@ -248,7 +249,7 @@ body {
     border-radius: var(--border-radius-full);
     overflow: hidden;
     margin-right: var(--space-sm);
-    border: 2px solid var(--gray-300);
+    border: 2px solid var(--primary-light);
     flex-shrink: 0;
 }
 
@@ -266,7 +267,7 @@ body {
 .user-name {
     font-size: var(--font-size-md);
     font-weight: 600;
-    color: var(--gray-900);
+    color: var(--primary);
     margin-bottom: var(--space-xs);
     white-space: nowrap;
     overflow: hidden;
@@ -298,7 +299,7 @@ body {
 
 .profile-btn:hover {
     background-color: var(--gray-100);
-    color: var(--gray-900);
+    color: var(--primary-light);
     transform: translateX(var(--space-xs));
     border-color: var(--gray-400);
 }
@@ -339,7 +340,7 @@ body {
 }
 
 .content-wrapper h1 {
-    color: var(--gray-900);
+    color: var(--primary);
     margin-bottom: var(--space-md);
     font-size: var(--font-size-5xl);
     font-weight: 700;
@@ -424,14 +425,14 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--gray-800);
+    background-color: var(--primary);
     color: white;
-    border-color: var(--gray-800);
+    border-color: var(--primary);
 }
 
 .btn-primary:hover {
-    background-color: var(--gray-900);
-    border-color: var(--gray-900);
+    background-color: var(--primary-light);
+    border-color: var(--primary-light);
     transform: translateY(-1px);
     box-shadow: var(--shadow-sm);
 }
@@ -502,8 +503,8 @@ body {
 
 .input:focus {
     outline: none;
-    border-color: var(--gray-500);
-    box-shadow: 0 0 0 3px rgba(158, 158, 158, 0.1);
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
 }
 
 .input::placeholder {
@@ -628,7 +629,7 @@ body {
 .modal-title {
     font-size: var(--font-size-2xl);
     font-weight: 600;
-    color: var(--gray-900);
+    color: var(--primary);
     margin: 0;
     line-height: 1.3;
 }
@@ -686,7 +687,7 @@ body {
 .profile-name {
     font-size: var(--font-size-2xl);
     font-weight: 600;
-    color: var(--gray-900);
+    color: var(--primary);
     margin-bottom: var(--space-sm);
     line-height: 1.3;
 }
@@ -712,8 +713,8 @@ body {
 .role-badge {
     display: inline-block;
     padding: var(--space-xs) var(--space-md);
-    background-color: var(--gray-200);
-    color: var(--gray-700);
+    background-color: var(--primary);
+    color: white;
     border-radius: 20px;
     font-size: var(--font-size-xs);
     font-weight: 600;
@@ -758,7 +759,7 @@ body {
 
 .edit-btn:hover {
     background-color: var(--gray-200);
-    color: var(--gray-900);
+    color: var(--primary);
     transform: translateY(-1px);
     box-shadow: var(--shadow-sm);
 }
@@ -771,7 +772,7 @@ body {
 
 .password-btn:hover {
     background-color: var(--gray-200);
-    color: var(--gray-900);
+    color: var(--primary);
     transform: translateY(-1px);
     box-shadow: var(--shadow-sm);
 }
@@ -930,8 +931,8 @@ body {
 
 .form-input:focus {
     outline: none;
-    border-color: var(--gray-500);
-    box-shadow: 0 0 0 3px rgba(158, 158, 158, 0.1);
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
 }
 
 .form-input::placeholder {
@@ -961,14 +962,14 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--gray-800);
+    background-color: var(--primary);
     color: white;
-    border: 1px solid var(--gray-800);
+    border: 1px solid var(--primary);
 }
 
 .btn-primary:hover {
-    background-color: var(--gray-900);
-    border-color: var(--gray-900);
+    background-color: var(--primary-light);
+    border-color: var(--primary-light);
     transform: translateY(-1px);
     box-shadow: var(--shadow-sm);
 }
@@ -1067,7 +1068,7 @@ body {
 
 .strength-text {
     font-size: var(--font-size-sm);
-    color: var(--gray-600);
+    color: var(--primary);
 }
 
 .strength-bar {
@@ -1261,8 +1262,8 @@ body {
 }
 
 .badge-primary {
-    background-color: var(--primary);
-    color: white;
+    background-color: rgba(0, 51, 102, 0.1);
+    color: var(--primary);
 }
 
 .badge-gray {
@@ -1288,7 +1289,7 @@ body {
 
 .welcome-date {
     font-size: var(--font-size-md);
-    color: var(--gray-600);
+    color: var(--primary);
     display: flex;
     align-items: center;
     gap: var(--space-sm);
@@ -1301,12 +1302,12 @@ body {
 
 /* Títulos de sección */
 .section-title {
-    color: var(--gray-800);
+    color: var(--primary);
     font-size: var(--font-size-2xl);
     font-weight: 600;
     margin-bottom: var(--space-lg);
     padding-bottom: var(--space-sm);
-    border-bottom: 2px solid var(--gray-200);
+    border-bottom: 2px solid rgba(0, 51, 102, 0.2);
 }
 
 /* Resumen general - Tarjetas */
@@ -1354,19 +1355,19 @@ body {
 
 /* Colores para los iconos de las tarjetas */
 .overview-card:nth-child(1) .card-icon {
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
 }
 
 .overview-card:nth-child(2) .card-icon {
-    background: linear-gradient(135deg, #10b981, #34d399);
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
 }
 
 .overview-card:nth-child(3) .card-icon {
-    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
 }
 
 .overview-card:nth-child(4) .card-icon {
-    background: linear-gradient(135deg, #ec4899, #f472b6);
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
 }
 
 .card-content {
@@ -1385,7 +1386,7 @@ body {
 .card-value {
     font-size: var(--font-size-4xl);
     font-weight: 700;
-    color: var(--gray-900);
+    color: var(--primary);
     line-height: 1;
     margin-bottom: var(--space-xs);
 }
@@ -1409,8 +1410,8 @@ body {
 }
 
 .card-trend.positive {
-    background-color: rgba(16, 185, 129, 0.1);
-    color: var(--success);
+    background-color: rgba(0, 51, 102, 0.1);
+    color: var(--primary);
 }
 
 .card-trend.neutral {
@@ -1455,7 +1456,7 @@ body {
 
 .quick-action-btn:hover {
     background-color: var(--gray-50);
-    border-color: var(--gray-300);
+    border-color: var(--primary-light);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
@@ -1466,7 +1467,7 @@ body {
 
 .quick-action-btn i {
     font-size: var(--font-size-2xl);
-    color: var(--gray-700);
+    color: var(--primary);
     margin-bottom: var(--space-xs);
 }
 
@@ -1509,7 +1510,7 @@ body {
     display: flex;
     align-items: center;
     gap: var(--space-sm);
-    color: var(--gray-800);
+    color: var(--primary);
     font-size: var(--font-size-xl);
     font-weight: 600;
     margin-bottom: var(--space-lg);
@@ -1518,7 +1519,7 @@ body {
 }
 
 .form-section-title i {
-    color: var(--gray-600);
+    color: var(--primary);
     font-size: var(--font-size-lg);
 }
 
@@ -1544,7 +1545,7 @@ body {
     margin-bottom: var(--space-sm);
     font-size: var(--font-size-sm);
     font-weight: 500;
-    color: var(--gray-800);
+    color: var(--primary);
 }
 
 .required {
@@ -1569,8 +1570,8 @@ body {
 
 .form-input:focus, .form-select:focus {
     outline: none;
-    border-color: var(--gray-500);
-    box-shadow: 0 0 0 3px rgba(158, 158, 158, 0.1);
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
 }
 
 .form-input::placeholder {
@@ -1640,7 +1641,7 @@ body {
     right: 16px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--gray-600);
+    color: var(--primary);
     font-size: 14px;
     pointer-events: none;
 }
@@ -1676,7 +1677,7 @@ body {
 
 .strength-text {
     font-size: var(--font-size-sm);
-    color: var(--gray-600);
+    color: var(--primary);
     min-width: 70px;
 }
 
@@ -1876,7 +1877,7 @@ body {
 }
 
 .reports-section .section-title {
-    color: var(--gray-800);
+    color: var(--primary);
     font-size: var(--font-size-xl);
     font-weight: 600;
     margin-bottom: 0;
@@ -1919,8 +1920,8 @@ body {
 
 .search-input:focus {
     outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
 }
 
 .search-input::placeholder {
@@ -1932,14 +1933,14 @@ body {
     left: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--gray-600);
+    color: var(--primary);
     font-size: var(--font-size-sm);
     z-index: 1;
 }
 
 .total-counter {
     font-size: var(--font-size-sm);
-    color: var(--gray-600);
+    color: var(--primary);
     font-weight: 500;
     white-space: nowrap;
 }
@@ -1977,7 +1978,7 @@ body {
 
 .data-table th i {
     margin-right: var(--space-xs);
-    color: var(--gray-600);
+    color: var(--primary);
     font-size: var(--font-size-xs);
 }
 
@@ -1987,7 +1988,7 @@ body {
 }
 
 .data-table tbody tr:hover {
-    background-color: var(--gray-50);
+    background-color: rgba(0, 51, 102, 0.05);
 }
 
 .data-table td {
@@ -2030,7 +2031,7 @@ body {
 }
 
 .badge-primary {
-    background-color: rgba(99, 102, 241, 0.1);
+    background-color: rgba(0, 51, 102, 0.1);
     color: var(--primary);
 }
 
