@@ -156,6 +156,16 @@ body {
     letter-spacing: -0.5px;
 }
 
+.logo-btn:hover .org {
+    color: var(--primary-light);
+    transition: color 0.3s ease; 
+}
+
+.org {
+    color: var(--primary);
+    transition: color 0.3s ease; 
+}
+
 /* Navegación principal */
 .sidebar-nav {
     flex: 1;
