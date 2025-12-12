@@ -1762,8 +1762,10 @@ class UIManager {
         // Logout
         document.getElementById('logout-btn')?.addEventListener('click', () => {
             if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
-                alert('Sesión cerrada. Redirigiendo a la página de inicio...');
+                // Cerrar modales
                 this.modals.profile.close();
+                // Redirigir al servidor para cerrar sesión
+                window.location.href = '/logout';
             }
         });
     }
