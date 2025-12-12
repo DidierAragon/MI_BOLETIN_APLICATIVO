@@ -610,7 +610,8 @@ body {
     background-color: white;
     border-radius: var(--border-radius-xl);
     width: 100%;
-    max-width: 420px;
+    /* Aumentado de 420px a 500px para más espacio interno */
+    max-width: 500px;
     max-height: 85vh;
     box-shadow: var(--shadow-lg);
     overflow: hidden;
@@ -630,7 +631,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-lg);
+    padding: var(--space-xl) var(--space-lg);
     border-bottom: 1px solid var(--gray-200);
     background-color: var(--gray-50);
     flex-shrink: 0;
@@ -666,7 +667,7 @@ body {
 
 /* Contenido del modal */
 .modal-content {
-    padding: var(--space-lg);
+    padding: var(--space-xl) var(--space-lg);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -900,10 +901,9 @@ body {
 }
 
 .form-group {
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-lg); /* Aumentado de var(--space-md) */
     width: 100%;
 }
-
 .form-label {
     display: block;
     margin-bottom: var(--space-sm);
@@ -952,7 +952,7 @@ body {
 /* Botones de acción del formulario */
 .form-actions {
     display: flex;
-    gap: var(--space-sm);
+    gap: var(--space-md);
     margin-top: var(--space-xl);
     width: 100%;
 }
