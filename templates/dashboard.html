@@ -965,6 +965,83 @@
                         </div>
                     </div>
 
+                    <!-- Sección de Cambio de Contraseña -->
+                    <div class="modal-password-section">
+                        <div class="modal-password-toggle" id="toggle-estudiante-password-section">
+                            <div class="modal-password-toggle-title">
+                                <i class="fas fa-key"></i>
+                                <span>Cambiar Contraseña</span>
+                            </div>
+                            <button type="button" class="modal-password-toggle-btn">
+                                <i class="fas fa-chevron-down"></i>
+                                <span>Mostrar</span>
+                            </button>
+                        </div>
+                        
+                        <div class="modal-password-content" id="estudiante-password-content">
+                            <div class="modal-password-note">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Deja estos campos vacíos si no deseas cambiar la contraseña</span>
+                            </div>
+                            
+                            <div class="modal-form-group">
+                                <label for="edit-estudiante-nueva-contrasena" class="modal-form-label">
+                                    Nueva contraseña
+                                </label>
+                                <div class="password-container">
+                                    <div class="modal-input-with-icon">
+                                        <i class="fas fa-lock input-icon"></i>
+                                        <input 
+                                            type="password" 
+                                            id="edit-estudiante-nueva-contrasena" 
+                                            class="modal-form-input password-input" 
+                                            placeholder="Ingresa la nueva contraseña"
+                                        >
+                                    </div>
+                                    <button type="button" class="toggle-password-btn" data-target="edit-estudiante-nueva-contrasena">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-error-message" id="edit-estudiante-contrasena-error"></div>
+                            </div>
+
+                            <div class="modal-form-group">
+                                <label for="edit-estudiante-confirmar-contrasena" class="modal-form-label">
+                                    Confirmar nueva contraseña
+                                </label>
+                                <div class="password-container">
+                                    <div class="modal-input-with-icon">
+                                        <i class="fas fa-lock input-icon"></i>
+                                        <input 
+                                            type="password" 
+                                            id="edit-estudiante-confirmar-contrasena" 
+                                            class="modal-form-input password-input" 
+                                            placeholder="Confirma la nueva contraseña"
+                                        >
+                                    </div>
+                                    <button type="button" class="toggle-password-btn" data-target="edit-estudiante-confirmar-contrasena">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-error-message" id="edit-estudiante-confirmar-error"></div>
+                            </div>
+
+                            <div class="modal-password-actions">
+                                <button type="button" class="btn-secondary modal-generate-password-btn" id="generate-estudiante-password">
+                                    <i class="fas fa-random"></i> Generar Contraseña
+                                </button>
+                            </div>
+
+                            <div class="password-strength" style="margin-top: var(--space-sm);">
+                                <span class="strength-text">Seguridad:</span>
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="edit-estudiante-password-strength-fill"></div>
+                                </div>
+                                <span class="strength-label" id="edit-estudiante-password-strength-label">Débil</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- ID oculto para referencia -->
                     <input type="hidden" id="edit-estudiante-id">
 
@@ -1127,6 +1204,83 @@
                                 </div>
                             </div>
                             <div class="modal-error-message" id="edit-profesor-asignaturas-error"></div>
+                        </div>
+                    </div>
+
+                    <!-- Sección de Cambio de Contraseña -->
+                    <div class="modal-password-section">
+                        <div class="modal-password-toggle" id="toggle-profesor-password-section">
+                            <div class="modal-password-toggle-title">
+                                <i class="fas fa-key"></i>
+                                <span>Cambiar Contraseña</span>
+                            </div>
+                            <button type="button" class="modal-password-toggle-btn">
+                                <i class="fas fa-chevron-down"></i>
+                                <span>Mostrar</span>
+                            </button>
+                        </div>
+                        
+                        <div class="modal-password-content" id="profesor-password-content">
+                            <div class="modal-password-note">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Deja estos campos vacíos si no deseas cambiar la contraseña</span>
+                            </div>
+                            
+                            <div class="modal-form-group">
+                                <label for="edit-profesor-nueva-contrasena" class="modal-form-label">
+                                    Nueva contraseña
+                                </label>
+                                <div class="password-container">
+                                    <div class="modal-input-with-icon">
+                                        <i class="fas fa-lock input-icon"></i>
+                                        <input 
+                                            type="password" 
+                                            id="edit-profesor-nueva-contrasena" 
+                                            class="modal-form-input password-input" 
+                                            placeholder="Ingresa la nueva contraseña"
+                                        >
+                                    </div>
+                                    <button type="button" class="toggle-password-btn" data-target="edit-profesor-nueva-contrasena">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-error-message" id="edit-profesor-contrasena-error"></div>
+                            </div>
+
+                            <div class="modal-form-group">
+                                <label for="edit-profesor-confirmar-contrasena" class="modal-form-label">
+                                    Confirmar nueva contraseña
+                                </label>
+                                <div class="password-container">
+                                    <div class="modal-input-with-icon">
+                                        <i class="fas fa-lock input-icon"></i>
+                                        <input 
+                                            type="password" 
+                                            id="edit-profesor-confirmar-contrasena" 
+                                            class="modal-form-input password-input" 
+                                            placeholder="Confirma la nueva contraseña"
+                                        >
+                                    </div>
+                                    <button type="button" class="toggle-password-btn" data-target="edit-profesor-confirmar-contrasena">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-error-message" id="edit-profesor-confirmar-error"></div>
+                            </div>
+
+                            <div class="modal-password-actions">
+                                <button type="button" class="btn-secondary modal-generate-password-btn" id="generate-profesor-modal-password">
+                                    <i class="fas fa-random"></i> Generar Contraseña
+                                </button>
+                            </div>
+
+                            <div class="password-strength" style="margin-top: var(--space-sm);">
+                                <span class="strength-text">Seguridad:</span>
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="edit-profesor-password-strength-fill"></div>
+                                </div>
+                                <span class="strength-label" id="edit-profesor-password-strength-label">Débil</span>
+                            </div>
                         </div>
                     </div>
 
