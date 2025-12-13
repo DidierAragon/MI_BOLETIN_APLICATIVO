@@ -66,4 +66,5 @@ CREATE TABLE IF NOT EXISTS solicitudes_cambio_contrasena (
     FOREIGN KEY (id_admin) REFERENCES administradores(id_admin)
 );
 
+-- Eliminar todas las filas de todas la tablas
 TRUNCATE TABLE administradores, solicitudes_cambio_contrasena, estudiantes, profesores RESTART IDENTITY CASCADE;
