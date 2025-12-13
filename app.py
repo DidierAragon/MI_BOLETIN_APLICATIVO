@@ -2271,4 +2271,4 @@ def obtener_profesor(codigo):
         return jsonify({"status": "error", "message": "Error al obtener los datos."})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
