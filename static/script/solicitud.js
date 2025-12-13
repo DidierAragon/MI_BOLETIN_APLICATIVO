@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const tryAgainBtn = document.getElementById('tryAgain');
     const successMessageText = document.getElementById('successMessageText');
     const errorMessageText = document.getElementById('errorMessageText');
+    const backFromSuccessBtn = document.getElementById('backFromSuccess');
     
     // Campos del formulario
     const userIdentifier = document.getElementById('userIdentifier');
@@ -245,6 +246,10 @@ document.addEventListener('DOMContentLoaded', function() {
         showForm();
     });
     
+    backFromSuccessBtn.addEventListener('click', function() {
+        window.location.href = '/loginuser';
+    });
+
     // Validación en tiempo real para mejorar la experiencia de usuario
     userIdentifier.addEventListener('blur', function() {
         if (!userIdentifier.value.trim()) {

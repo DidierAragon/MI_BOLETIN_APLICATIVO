@@ -412,3 +412,29 @@ body {
         padding: 15px;
     }
 }
+
+/* Agrega esto en la sección de botones o responsive */
+.success-message .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.success-message .button-group .btn {
+    min-width: 180px;
+    flex: none;
+}
+
+@media (max-width: 768px) {
+    .success-message .button-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .success-message .button-group .btn {
+        width: 100%;
+        max-width: 250px;
+    }
+}
