@@ -1,4 +1,3 @@
-// script.js - Versión optimizada y modular
 // ============================================
 // CONSTANTES Y CONFIGURACIÓN
 // ============================================

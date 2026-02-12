@@ -15,9 +15,9 @@ app.secret_key = 'tu_clave_secreta_aqui'
 # Configuración del servidor SMTP (ajusta según tu proveedor)
 SMTP_SERVER = "smtp.gmail.com"  # Para Gmail, cambia si usas otro
 SMTP_PORT = 587
-SMTP_USERNAME = "andresdevbod@gmail.com"  # Cambia esto
-SMTP_PASSWORD = "lkrx ciua qxsl maqo"  # Cambia esto (usa contraseña de aplicación para Gmail)
-EMAIL_FROM = "MiBoletínAdmin.com <andresdevbod@gmail.com>"
+SMTP_USERNAME = "miboletinpep@gmail.com"  # Cambia esto
+SMTP_PASSWORD = "ihpo waip cekq dstv"  # Cambia esto (usa contraseña de aplicación para Gmail)
+EMAIL_FROM = "MiBoletínAdmin.com <miboletinpep@gmail.com>"
 
 def get_db_connection():
     return psycopg2.connect(
