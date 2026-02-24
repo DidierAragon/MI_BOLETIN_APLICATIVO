@@ -12,7 +12,7 @@ from email.mime.multipart import MIMEMultipart
 import os
 
 app = Flask(__name__)
-app.secret_key = 'tu_clave_secreta_aqui'  # Necesaria 
+app.secret_key = 'tu_clave_secreta_aqui'  
 
 # -------------------------
 # 🔧 CONFIGURACIÓN EMAIL (GMAIL)

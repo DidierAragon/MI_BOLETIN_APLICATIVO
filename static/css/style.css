@@ -57,17 +57,6 @@ body {
     color: #003366;
 }
 
-.logo-text {
-    font-size: 32px;
-    font-weight: 700;
-    color: #003366;
-    letter-spacing: -1px;
-}
-
-.logo-text .org {
-    color: #4A90E2;
-}
-
 .subtitle {
     color: #666;
     font-size: 16px;
