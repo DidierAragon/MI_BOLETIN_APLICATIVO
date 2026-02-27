@@ -26,9 +26,14 @@ EMAIL_FROM = "MiBoletínAdmin.com <miboletinpep@gmail.com>"
 # -------------------------
 # 🔌 CONFIGURACIÓN DATABASE
 # -------------------------
+
 def get_db_connection():
+    # 'db' es el nombre del servicio que pusimos en docker-compose
+    # Si corre fuera de docker, usa 'localhost'
+    db_host = os.environ.get('DB_HOST', 'localhost') 
+    
     return psycopg2.connect(
-        host="localhost",
+        host=db_host,
         database="miboletin",
         user="postgres",
         password="123456"

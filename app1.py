@@ -20,13 +20,16 @@ SMTP_PASSWORD = "ihpo waip cekq dstv"  # Cambia esto (usa contraseña de aplicac
 EMAIL_FROM = "MiBoletínAdmin.com <miboletinpep@gmail.com>"
 
 def get_db_connection():
+    # 'db' es el nombre del servicio que pusimos en docker-compose
+    # Si corre fuera de docker, usa 'localhost'
+    db_host = os.environ.get('DB_HOST', 'localhost') 
+    
     return psycopg2.connect(
-        host="localhost",
+        host=db_host,
         database="miboletin",
         user="postgres",
         password="123456"
     )
-
 def enviar_correo_admin(destinatario, asunto, cuerpo_html, cuerpo_texto=""):
     """
     Función para enviar correos electrónicos
