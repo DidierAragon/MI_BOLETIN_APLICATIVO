@@ -20,15 +20,11 @@ SMTP_PASSWORD = "ihpo waip cekq dstv"  # Cambia esto (usa contraseña de aplicac
 EMAIL_FROM = "MiBoletínAdmin.com <miboletinpep@gmail.com>"
 
 def get_db_connection():
-    # 'db' es el nombre del servicio que pusimos en docker-compose
-    # Si corre fuera de docker, usa 'localhost'
-    db_host = os.environ.get('DB_HOST', 'localhost') 
-    
     return psycopg2.connect(
-        host=db_host,
-        database="miboletin",
-        user="postgres",
-        password="123456"
+        host=os.environ.get("DB_HOST", "localhost"),
+        database=os.environ.get("DB_NAME", "miboletin"),
+        user=os.environ.get("DB_USER", "postgres"),
+        password=os.environ.get("DB_PASSWORD", "123456")
     )
 def enviar_correo_admin(destinatario, asunto, cuerpo_html, cuerpo_texto=""):
     """
@@ -439,4 +435,4 @@ def limpiar_sesion():
     return jsonify({'status': 'success'})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001, host='0.0.0.0')
+   app.run(host="0.0.0.0", port=5000)
