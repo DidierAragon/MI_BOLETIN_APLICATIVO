@@ -11,8 +11,9 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import os
 
-app = Flask(__name__)
-app.secret_key = 'tu_clave_secreta_aqui'  
+from flask import Blueprint
+
+admin = Blueprint('admin', __name__)
 
 # -------------------------
 # 🔧 CONFIGURACIÓN EMAIL (GMAIL)
@@ -389,30 +390,35 @@ def generate_verification_code(length=6):
 # -------------------------
 # 📌 RUTAS HTML
 # -------------------------
-@app.route("/")
+
+@admin.route("/")
 def register():
     return render_template("register.html")
 
-@app.route("/login")
+
+@admin.route("/login")
 def login():
     return render_template("login.html")
 
-@app.route("/forgot-password")
+
+@admin.route("/forgot-password")
 def forgot_password():
     return render_template("f-password.html")
 
-@app.route("/email-verification")
+
+@admin.route("/email-verification")
 def email_verification():
     return render_template("e-verification.html")
 
-@app.route("/request-password")
+@admin.route("/request-password")
 def request_password():
     return render_template("r-password.html")
 
 # -------------------------
 # 📌 RUTA PARA EL DASHBOARD (PROTEGIDA)
 # -------------------------
-@app.route("/dashboard")
+
+@admin.route("/dashboard")
 def dashboard():
     # Verificar si el usuario está logueado
     if 'user_id' not in session:
@@ -460,7 +466,8 @@ def dashboard():
 # -------------------------
 # 📌 RUTA PARA CERRAR SESIÓN
 # -------------------------
-@app.route("/logout")
+
+@admin.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for('login'))
@@ -468,7 +475,7 @@ def logout():
 # -------------------------
 # 📌 RUTA PARA REGISTRO (POST)
 # -------------------------
-@app.route("/register", methods=["POST"])
+@admin.route("/register", methods=["POST"])
 def register_user():
     data = request.get_json()
 
@@ -538,7 +545,7 @@ def register_user():
 # -------------------------
 # 📌 RUTA PARA INICIAR SESIÓN (POST)
 # -------------------------
-@app.route("/login", methods=["POST"])
+@admin.route("/login", methods=["POST"])
 def login_user():
     data = request.get_json()
     
@@ -616,7 +623,7 @@ def login_user():
 # 📌 RUTA PARA VERIFICAR CÓDIGO (POST)
 # -------------------------
 # En la función verify_code de app.py
-@app.route("/verify-code", methods=["POST"])
+@admin.route("/verify-code", methods=["POST"])
 def verify_code():
     data = request.get_json()
     
@@ -686,7 +693,7 @@ def verify_code():
 # -------------------------
 # 📌 RUTA PARA REENVIAR CÓDIGO (POST)
 # -------------------------
-@app.route("/resend-code", methods=["POST"])
+@admin.route("/resend-code", methods=["POST"])
 def resend_code():
     data = request.get_json()
     
@@ -741,7 +748,7 @@ def resend_code():
 # -------------------------
 # 📌 RUTA PARA ACTUALIZAR EMAIL (POST)
 # -------------------------
-@app.route("/update-email", methods=["POST"])
+@admin.route("/update-email", methods=["POST"])
 def update_email():
     data = request.get_json()
     
@@ -799,7 +806,7 @@ def update_email():
         return jsonify({"status": "error", "message": "Failed to update email. Please try again."})
 
 # 📌 RUTA PARA SOLICITUD DE RECUPERACIÓN DE CONTRASEÑA (POST)
-@app.route("/request-password", methods=["POST"])
+@admin.route("/request-password", methods=["POST"])
 def request_password_post():  # Cambia el nombre aquí
     data = request.get_json()
     
@@ -1224,7 +1231,7 @@ def send_recovery_email(to_email, recovery_link, user_name):
         return False
 
 # 📌 RUTA PARA F-PASSWORD CON TOKEN DE VERIFICACIÓN
-@app.route("/f-password")
+@admin.route("/f-password")
 def forgot_password_with_token():
     token = request.args.get('token')
     
@@ -1261,7 +1268,7 @@ def forgot_password_with_token():
         return render_template("r-password.html", error="Error al verificar el enlace de recuperación.")
 
 # 📌 RUTA PARA ACTUALIZAR CONTRASEÑA (POST)
-@app.route("/reset-password", methods=["POST"])
+@admin.route("/reset-password", methods=["POST"])
 def reset_password():
     data = request.get_json()
     
@@ -1323,7 +1330,7 @@ def reset_password():
         return jsonify({"status": "error", "message": "Error al restablecer la contraseña."})
     
 # 📌 RUTA PARA ACTUALIZAR PERFIL DE USUARIO (POST) - ACTUALIZADA CON SINCRONIZACIÓN
-@app.route("/update-profile", methods=["POST"])
+@admin.route("/update-profile", methods=["POST"])
 def update_profile():
     # Verificar si el usuario está logueado
     if 'user_id' not in session:
@@ -1441,7 +1448,7 @@ def update_profile():
         return jsonify({"status": "error", "message": f"Error al actualizar el perfil: {str(e)}"})
 
 # 📌 RUTA PARA CAMBIAR CONTRASEÑA (POST)
-@app.route("/change-password", methods=["POST"])
+@admin.route("/change-password", methods=["POST"])
 def change_password():
     # Verificar si el usuario está logueado
     if 'user_id' not in session:
@@ -1505,7 +1512,7 @@ def change_password():
         return jsonify({"status": "error", "message": "Error al cambiar la contraseña."})
 
 # 📌 RUTA PARA REGISTRAR ESTUDIANTE (POST) - ACTUALIZADA CON TRACKING
-@app.route("/registrar-estudiante", methods=["POST"])
+@admin.route("/registrar-estudiante", methods=["POST"])
 def registrar_estudiante():
     # Verificar si el usuario está logueado
     if 'user_id' not in session:
@@ -1608,7 +1615,7 @@ def registrar_estudiante():
         return jsonify({"status": "error", "message": "Error inesperado. Por favor, intenta nuevamente."})
 
 # 📌 RUTA PARA REGISTRAR PROFESOR (POST) - ACTUALIZADA CON TRACKING
-@app.route("/registrar-profesor", methods=["POST"])
+@admin.route("/registrar-profesor", methods=["POST"])
 def registrar_profesor():
     # Verificar si el usuario está logueado
     if 'user_id' not in session:
@@ -1717,7 +1724,7 @@ def registrar_profesor():
         return jsonify({"status": "error", "message": "Error inesperado. Por favor, intenta nuevamente."})
 
 # 📌 RUTA PARA OBTENER ESTUDIANTES (GET)
-@app.route("/obtener-estudiantes", methods=["GET"])
+@admin.route("/obtener-estudiantes", methods=["GET"])
 def obtener_estudiantes():
     # Verificar si el usuario está logueado
     if 'user_id' not in session:
@@ -1760,7 +1767,7 @@ def obtener_estudiantes():
         return jsonify({"status": "error", "message": "Error al obtener los datos."})
 
 # 📌 RUTA PARA OBTENER PROFESORES (GET)
-@app.route("/obtener-profesores", methods=["GET"])
+@admin.route("/obtener-profesores", methods=["GET"])
 def obtener_profesores():
     # Verificar si el usuario está logueado
     if 'user_id' not in session:
@@ -1809,7 +1816,7 @@ def obtener_profesores():
         return jsonify({"status": "error", "message": "Error al obtener los datos."})
     
 # 📌 RUTA PARA ELIMINAR ESTUDIANTE (POST)
-@app.route("/eliminar-estudiante", methods=["POST"])
+@admin.route("/eliminar-estudiante", methods=["POST"])
 def eliminar_estudiante():
     # Verificar si el usuario está logueado
     if 'user_id' not in session:
@@ -1855,7 +1862,7 @@ def eliminar_estudiante():
         return jsonify({"status": "error", "message": "Error al eliminar el estudiante."})
 
 # 📌 RUTA PARA ELIMINAR PROFESOR (POST)
-@app.route("/eliminar-profesor", methods=["POST"])
+@admin.route("/eliminar-profesor", methods=["POST"])
 def eliminar_profesor():
     # Verificar si el usuario está logueado
     if 'user_id' not in session:
@@ -1901,7 +1908,7 @@ def eliminar_profesor():
         return jsonify({"status": "error", "message": "Error al eliminar el profesor."})
     
 # 📌 RUTA PARA OBTENER ESTADÍSTICAS DEL DASHBOARD (GET)
-@app.route("/dashboard-stats", methods=["GET"])
+@admin.route("/dashboard-stats", methods=["GET"])
 def dashboard_stats():
     # Verificar si el usuario está logueado
     if 'user_id' not in session:
@@ -1935,7 +1942,7 @@ def dashboard_stats():
         return jsonify({"status": "error", "message": "Error al obtener estadísticas."})
     
 # 📌 RUTA PARA ACTUALIZAR ESTUDIANTE (POST)
-@app.route("/actualizar-estudiante", methods=["POST"])
+@admin.route("/actualizar-estudiante", methods=["POST"])
 def actualizar_estudiante():
     # Verificar si el usuario está logueado
     if 'user_id' not in session:
@@ -2053,7 +2060,7 @@ def actualizar_estudiante():
         return jsonify({"status": "error", "message": "Error inesperado. Por favor, intenta nuevamente."})
     
 # 📌 RUTA PARA ACTUALIZAR PROFESOR (POST)
-@app.route("/actualizar-profesor", methods=["POST"])
+@admin.route("/actualizar-profesor", methods=["POST"])
 def actualizar_profesor():
     # Verificar si el usuario está logueado
     if 'user_id' not in session:
@@ -2185,7 +2192,7 @@ def actualizar_profesor():
         return jsonify({"status": "error", "message": "Error inesperado. Por favor, intenta nuevamente."})
     
 # 📌 RUTA PARA OBTENER DATOS DE UN ESTUDIANTE (GET)
-@app.route("/obtener-estudiante/<codigo>", methods=["GET"])
+@admin.route("/obtener-estudiante/<codigo>", methods=["GET"])
 def obtener_estudiante(codigo):
     # Verificar si el usuario está logueado
     if 'user_id' not in session:
@@ -2226,7 +2233,7 @@ def obtener_estudiante(codigo):
         return jsonify({"status": "error", "message": "Error al obtener los datos."})
 
 # 📌 RUTA PARA OBTENER DATOS DE UN PROFESOR (GET)
-@app.route("/obtener-profesor/<codigo>", methods=["GET"])
+@admin.route("/obtener-profesor/<codigo>", methods=["GET"])
 def obtener_profesor(codigo):
     # Verificar si el usuario está logueado
     if 'user_id' not in session:

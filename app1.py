@@ -9,8 +9,10 @@ from email.mime.multipart import MIMEMultipart
 import os
 import bcrypt
 
-app = Flask(__name__)
-app.secret_key = 'tu_clave_secreta_aqui'
+from flask import Blueprint
+
+app1 = Blueprint('app1', __name__)
+
 
 # Configuración del servidor SMTP (ajusta según tu proveedor)
 SMTP_SERVER = "smtp.gmail.com"  # Para Gmail, cambia si usas otro
@@ -58,12 +60,12 @@ def enviar_correo_admin(destinatario, asunto, cuerpo_html, cuerpo_texto=""):
         print(f"Error al enviar correo: {str(e)}")
         return False
 
-@app.route('/')
+@app1.route('/')
 def index():
     return render_template('loginuser.html')
 
 # Modificar la ruta loginuser para manejar POST
-@app.route('/loginuser', methods=['GET', 'POST'])
+@app1.route('/loginuser', methods=['GET', 'POST'])
 def loginuser():
     if request.method == 'GET':
         return render_template('loginuser.html')
@@ -144,7 +146,7 @@ def loginuser():
                 conn.close()
 
 # Agregar rutas para los dashboards
-@app.route('/estudiante')
+@app1.route('/estudiante')
 def estudiante_dashboard():
     # Verificar que el usuario esté logueado y sea estudiante
     user_info = session.get('user_info')
@@ -156,7 +158,7 @@ def estudiante_dashboard():
                          nombre=user_info['nombre'],
                          codigo=user_info['codigo'])
 
-@app.route('/profesor')
+@app1.route('/profesor')
 def profesor_dashboard():
     # Verificar que el usuario esté logueado y sea profesor
     user_info = session.get('user_info')
@@ -169,12 +171,12 @@ def profesor_dashboard():
                          codigo=user_info['codigo'])
 
 # Ruta para cerrar sesión
-@app.route('/logout')
+@app1.route('/logout')
 def logout():
     session.pop('user_info', None)
     return redirect(url_for('loginuser'))
 
-@app.route('/solicitud_user')
+@app1.route('/solicitud_user')
 def solicitud_user():
     conn = get_db_connection()
     cur = conn.cursor()
@@ -193,7 +195,7 @@ def solicitud_user():
                          admin_name=admin_name, 
                          admin_email=admin_email)
 
-@app.route('/verificar_usuario', methods=['POST'])
+@app1.route('/verificar_usuario', methods=['POST'])
 def verificar_usuario():
     data = request.json
     user_identifier = data.get('userIdentifier')
@@ -255,7 +257,7 @@ def verificar_usuario():
         'message': 'Usuario no encontrado. Verifica tu identificador y correo electrónico.'
     }), 404
 
-@app.route('/guardar_solicitud', methods=['POST'])
+@app1.route('/guardar_solicitud', methods=['POST'])
 def guardar_solicitud():
     data = request.json
     
@@ -429,10 +431,8 @@ def guardar_solicitud():
             'message': f'Error al guardar la solicitud: {str(e)}'
         }), 500
 
-@app.route('/limpiar_sesion', methods=['POST'])
+@app1.route('/limpiar_sesion', methods=['POST'])
 def limpiar_sesion():
     session.pop('user_info', None)
     return jsonify({'status': 'success'})
 
-if __name__ == '__main__':
-   app.run(host="0.0.0.0", port=5000)
